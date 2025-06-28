@@ -23,7 +23,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose the port used by Streamlit
-EXPOSE 8501
+EXPOSE 8080
 
 # Run the app
 CMD ["streamlit", "run", "app.py", "--server.port=8080", "--server.address=0.0.0.0"]
