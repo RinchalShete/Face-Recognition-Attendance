@@ -1,30 +1,18 @@
-FROM python:3.10-slim
-
-# Install system dependencies for dlib, face_recognition, and image handling
-RUN apt-get update && apt-get install -y \
-    build-essential cmake \
-    libboost-all-dev \
-    libssl-dev libffi-dev \
-    libopenblas-dev liblapack-dev \
-    libx11-dev libgtk-3-dev \
-    libpython3-dev python3-dev \
-    libopencv-dev \
-    curl ca-certificates \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+# ✅ Use a prebuilt image with dlib + face_recognition already installed
+FROM facegenius/face-recognition:latest
 
 # Set working directory
 WORKDIR /app
 
-# Copy project files
+# Copy your project files into the container
 COPY . .
 
-# Install Python dependencies
-RUN pip install --upgrade pip
+# Install only your remaining Python packages (dlib/face_recognition already exist)
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port used by Streamlit
+# Expose Streamlit port (you can still use 10000 if needed)
 EXPOSE 8501
 
-# Run the app
+# Start the Streamlit app
 CMD ["streamlit", "run", "app.py", "--server.port=10000", "--server.address=0.0.0.0"]
 
