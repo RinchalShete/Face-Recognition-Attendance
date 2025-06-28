@@ -32,9 +32,7 @@ A modern, web-based attendance system that uses **face recognition** to mark att
   - First entry → IN
   - Second entry → OUT
   - Already 2 entries → Message shown and skipped
-
-- ✅ Spinner shown during marking
-- ✔️ Multiple faces in a group image are all processed
+  
 
 ---
 
@@ -110,7 +108,7 @@ CLOUD_API_SECRET=your_api_secret
 ```bash
 docker build -t fra-app .
 ```
-### 4. Run the App (with auto reload)
+### 4. Run the App 
 ```bash
 docker run --env-file .env -p 8501:8501 -v "$PWD":/app fra-app
 ```
